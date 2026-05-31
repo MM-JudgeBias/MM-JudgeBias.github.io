@@ -1,71 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description" content="MM-JudgeBias: A Benchmark for Evaluating Compositional Biases in MLLM-as-a-Judge">
-  <meta name="keywords" content="MM-JudgeBias, MLLM, Judge, Bias, Benchmark">
+  <meta name="keywords" content="MM-JudgeBias, MLLM, Judge, Bias, Benchmark, Multimodal, Evaluation, ACL 2026">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MM-JudgeBias: A Benchmark for Evaluating Compositional Biases in MLLM-as-a-Judge</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="icon" type="image/png" href="static/images/judge_logo.png">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700;800&family=Noto+Sans:wght@300;400;500;700&family=Castoro&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css?v=13">
 
-  <style>
-    .publication-title {
-      font-family: 'Google Sans', sans-serif;
-      font-weight: 700;
-    }
-
-    .publication-authors {
-      font-family: 'Google Sans', sans-serif;
-    }
-
-    .author-block {
-      display: inline-block;
-      margin: 0 4px;
-    }
-
-    .author-block a {
-      color: #363636;
-    }
-
-    .author-block a:hover {
-      color: #3273dc;
-    }
-
-    .publication-links .button {
-      margin: 4px;
-    }
-
-    .annotation {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 8px;
-    }
-
-    .coming-soon {
-      font-family: 'Google Sans', sans-serif;
-      font-size: 1.5rem;
-      color: #888;
-      padding: 120px 0;
-      text-align: center;
-    }
-
-    footer {
-      padding: 24px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #aaa;
-      border-top: 1px solid #eee;
-    }
-  </style>
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 <body>
 
-<!-- Hero / Header -->
+<!-- ============================== HERO ============================== -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -73,58 +30,51 @@
         <div class="column has-text-centered">
 
           <h1 class="title is-2 publication-title">
-            MM-JudgeBias: A Benchmark for Evaluating Compositional Biases in MLLM-as-a-Judge
+            <img src="static/images/judge_logo.png" alt="MM-JudgeBias logo" class="title-logo">
+            <span class="title-mm">MM-JudgeBias</span><span class="title-rest">: A Benchmark for Evaluating Compositional Biases in MLLM-as-a-Judge</span>
           </h1>
 
-          <!-- Authors -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Sua Lee<sup style="color:black;">1*</sup>,
-            </span>
-            <span class="author-block">
-              Sanghee Park<sup style="color:black;">2,3</sup>,
-            </span>
-            <span class="author-block">
-              Jinbae Im<sup style="color:black;">2,3*&dagger;</sup>
-            </span>
+            <span class="author-block"><a href="https://scholar.google.co.kr/citations?user=XJsTwjYAAAAJ" target="_blank" rel="noopener">Sua Lee</a><sup>1*</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=_32kh3MAAAAJ" target="_blank" rel="noopener">Sanghee Park</a><sup>2,3</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=RbmA27QAAAAJ" target="_blank" rel="noopener">Jinbae Im</a><sup>2,3*&dagger;</sup></span>
           </div>
 
-          <!-- Affiliations -->
           <div class="is-size-5 publication-authors" style="margin-top: 4px;">
-            <span class="author-block"><sup style="color:black;">1</sup>Seoul National University,</span>
-            <span class="author-block"><sup style="color:black;">2</sup>NAVER Cloud AI</span>
-            <span class="author-block"><sup style="color:black;">3</sup>KAIST AI</span>
+            <span class="author-block"><sup>1</sup>Seoul National University,</span>
+            <span class="author-block"><sup>2</sup>NAVER Cloud AI,</span>
+            <span class="author-block"><sup>3</sup>KAIST AI</span>
           </div>
 
-          <!-- Annotation -->
           <div class="annotation">
             * Equal Contribution &nbsp;&nbsp; &dagger; Corresponding Author
           </div>
 
-          <!-- Links -->
+          <div class="venue-badge is-size-4-desktop is-size-5-touch">ACL 2026 (Main)</div>
+
           <div class="column has-text-centered" style="margin-top: 12px;">
             <div class="publication-links">
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/pdf/2604.18164" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2604.18164" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/naver-ai/MM-JudgeBias" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/naver-ai/MM-JudgeBias" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://huggingface.co/datasets/naver-ai/MM-JudgeBias" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-database"></i></span>
+                <a href="https://huggingface.co/datasets/naver-ai/MM-JudgeBias" target="_blank" rel="noopener" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">&#129303;</span>
                   <span>Dataset</span>
                 </a>
               </span>
@@ -137,21 +87,422 @@
   </div>
 </section>
 
-<!-- Coming Soon -->
+<!-- ============================== ARCHITECTURE TEASER ============================== -->
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <figure class="teaser-figure">
+      <img src="static/images/overall_architecture.png" alt="Overall architecture of MM-JudgeBias" class="zoomable-image" data-zoom-src="static/images/overall_architecture.png">
+      <figcaption>
+        <strong>Overview of the MM-JudgeBias construction and evaluation pipeline.</strong>
+        (a&ndash;b) We construct image sets from 29 source benchmarks covering four task types and 12 domain types, and then generate queries tailored to our bias evaluation setting through a comprehensive model-and-human verification framework to ensure high quality.
+        (c) A text-only evaluation set is independently constructed via a parallel generation and verification process.
+        (d&ndash;e) Based on nine defined bias types, we apply input perturbations to transform original unbiased samples&mdash;triplets (Q, I, R) or text-only pairs (Q, R)&mdash;into their corresponding biased variants (Q', I', R').
+        (f&ndash;g) Finally, we evaluate 26 MLLM judges using our proposed Bias-Deviation (BD) and Bias-Conformity (BC) metrics to systematically quantify the impact of Compositional Bias on their judgment reliability.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== INTRODUCTION ============================== -->
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="coming-soon">
-      The webpage will be released soon!
+    <h2 class="title is-3 section-title">Introduction</h2>
+    <div class="content has-text-justified">
+      <p>
+        MLLMs are increasingly deployed as automatic judges of multimodal generations, yet their reliability as evaluators remains underexplored. We show that many MLLM judges fail to reliably integrate visual and textual evidence, producing unstable or ungrounded scores. We systematically characterize this failure mode as <strong>Compositional Bias</strong> and introduce <strong>MM-JudgeBias</strong>, a benchmark that measures it across 9 bias types and 26 state-of-the-art MLLMs.
+      </p>
+      <p>
+        Beyond serving as task solvers, MLLMs have increasingly been adopted as automatic judges of multimodal generations &mdash; a paradigm known as <strong>MLLM-as-a-Judge</strong>. Given an input triplet of (Image, Query, Response), the judge is tasked with verifying whether the response is grounded in the visual content and faithfully answers the query, which inherently requires holistic integration of all visual&ndash;textual cues. We observe, however, that current MLLM judges frequently fail this mandate and instead rely on only a subset of the available cues. We formalize this failure mode as <strong>Compositional Bias</strong>: a systematic tendency where a judge fails to correctly integrate and reason over multiple components (query, image, and response), and instead relies on partial, misaligned, or spurious compositions.
+      </p>
+      <p>
+        <strong>MM-JudgeBias</strong> is a benchmark that quantitatively measures the compositional bias of MLLM judges. We deliberately inject controlled perturbations &mdash; each designed to elicit a specific form of compositional bias &mdash; into otherwise unbiased input samples, and quantify how the judge's score reacts to these perturbations using two complementary metrics: <strong>Bias-Deviation (BD)</strong> and <strong>Bias-Conformity (BC)</strong>. The perturbations span three critical dimensions of judgment reliability: <strong>Integrality</strong>, <strong>Congruity</strong>, and <strong>Robustness</strong>. Our dataset contains <strong>1,804 high-difficulty samples</strong> drawn from <strong>29 source benchmarks</strong>, covering 4 task types and 12 visual domains. We evaluate <strong>26 state-of-the-art MLLMs</strong> (closed-source, open-source, and critic models) and reveal that compositional bias is a pervasive, systemic issue, even in the most advanced reasoning-heavy models.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer>
+<!-- ============================== BIAS TYPES ============================== -->
+<section class="section section-alt">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Bias Types</h2>
+    <p class="section-subtitle">
+      Compositional biases are grouped into three functional dimensions. <strong>Integrality</strong> and <strong>Congruity</strong> measure whether a judge penalizes missing or contradictory evidence (higher <strong>BD</strong> is better). <strong>Robustness</strong> measures whether a judge remains stable under semantic-preserving perturbations (higher <strong>BC</strong> is better).
+    </p>
+    <ul class="intro-bullets">
+      <li><strong>Integrality</strong> &mdash; does the judge consider all components holistically?</li>
+      <li><strong>Congruity</strong> &mdash; does the judge detect and appropriately address semantic contradictions between components?</li>
+      <li><strong>Robustness</strong> &mdash; does the judge maintain a stable judgment under semantic-preserving variations?</li>
+    </ul>
+
+    <div class="taxonomy-wrap">
+      <table class="taxonomy-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Bias Type</th>
+            <th>Targeted Reliability</th>
+            <th>Perturbation Strategy</th>
+            <th>Metric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3" class="dim-cell">Integrality</td>
+            <td><strong>Text-Dominance</strong></td>
+            <td>Assesses over-reliance on linguistic cues when visual grounding is absent.</td>
+            <td>Replaces the image with a null image (black image).</td>
+            <td><span class="metric-tag metric-bd">BD&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Image-Dominance</strong></td>
+            <td>Tests if the judge ignores the original query in favor of visual content.</td>
+            <td>Replaces the query with a null text (<code>""</code>).</td>
+            <td><span class="metric-tag metric-bd">BD&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Response-Dominance</strong></td>
+            <td>Evaluates if scores are assigned based on response fluency alone, ignoring all context.</td>
+            <td>Replaces both query and image with null inputs.</td>
+            <td><span class="metric-tag metric-bd">BD&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td rowspan="2" class="dim-cell">Congruity</td>
+            <td><strong>Instruction-Misalignment</strong></td>
+            <td>Probes query&ndash;response conflict by checking for semantic mismatch between the query and response.</td>
+            <td>Replaces the query with a random, unrelated sample.</td>
+            <td><span class="metric-tag metric-bd">BD&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Image-Misalignment</strong></td>
+            <td>Probes image&ndash;response conflict by checking for semantic mismatch between the image and response.</td>
+            <td>Replaces the image with a random, unrelated sample.</td>
+            <td><span class="metric-tag metric-bd">BD&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td rowspan="4" class="dim-cell">Robustness</td>
+            <td><strong>Detail-Description</strong></td>
+            <td>Examines if providing redundant, aligned visual information inflates the score.</td>
+            <td>Appends a detailed caption of the given image to the query.</td>
+            <td><span class="metric-tag metric-bc">BC&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Unnecessary-Image</strong></td>
+            <td>Tests the ability to recognize and ignore irrelevant visual inputs in text-only tasks.</td>
+            <td>Adds a random, unrelated image to a text-only task.</td>
+            <td><span class="metric-tag metric-bc">BC&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visual-Transformation</strong></td>
+            <td>Measures invariance to low-level visual transformations that preserve semantics.</td>
+            <td>Applies a diverse set of semantic-preserving augmentations to the image.</td>
+            <td><span class="metric-tag metric-bc">BC&nbsp;&uarr;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Texture-Insertion</strong></td>
+            <td>Probes over-sensitivity to textual cues embedded directly within the visual modality.</td>
+            <td>Overlays query-related keywords or the query text itself onto the image.</td>
+            <td><span class="metric-tag metric-bc">BC&nbsp;&uarr;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== STATISTICS ============================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Statistics</h2>
+
+    <div class="slider-shell" id="stats-slider">
+      <button class="slider-arrow slider-prev" aria-label="Previous">&#10094;</button>
+      <button class="slider-arrow slider-next" aria-label="Next">&#10095;</button>
+
+      <div class="slider-track">
+        <!-- Slide 1 : Hierarchical Composition -->
+        <div class="slider-item is-active">
+          <div class="slide-grid">
+            <div class="slide-half">
+              <div class="table-container">
+                <table class="data-table compact">
+                  <thead>
+                    <tr><th>Task Type</th><th>Domain Type</th><th>#Samples</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td rowspan="2">Perception / Understanding</td><td>General</td><td>193</td></tr>
+                    <tr><td>Spatial / Layout / Geometry</td><td>94</td></tr>
+                    <tr class="subtotal"><td colspan="2">Subtotal</td><td>287</td></tr>
+                    <tr><td rowspan="4">Information Extraction</td><td>Text</td><td>223</td></tr>
+                    <tr><td>Chart / Plot / Diagram</td><td>150</td></tr>
+                    <tr><td>Table</td><td>172</td></tr>
+                    <tr><td>Web / App / UI</td><td>89</td></tr>
+                    <tr class="subtotal"><td colspan="2">Subtotal</td><td>634</td></tr>
+                    <tr><td rowspan="2">Knowledge</td><td>Factual / Commonsense</td><td>96</td></tr>
+                    <tr><td>Domain Knowledge</td><td>250</td></tr>
+                    <tr class="subtotal"><td colspan="2">Subtotal</td><td>346</td></tr>
+                    <tr><td rowspan="4">Reasoning</td><td>Causal / Logical</td><td>96</td></tr>
+                    <tr><td>Math</td><td>176</td></tr>
+                    <tr><td>Code / Symbolic</td><td>77</td></tr>
+                    <tr><td>Exam</td><td>188</td></tr>
+                    <tr class="subtotal"><td colspan="2">Subtotal</td><td>537</td></tr>
+                    <tr class="total"><td colspan="2">Total</td><td>1,804</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="slide-half">
+              <div id="hierarchical-chart" class="chart-box"></div>
+            </div>
+          </div>
+          <p class="slide-caption">
+            <strong>Hierarchical composition of the MM-JudgeBias dataset.</strong> 1,804 samples are distributed across four functional task types and twelve visual domains. Hover over any segment to see the per-domain sample count and proportion.
+          </p>
+        </div>
+
+        <!-- Slide 2 : 29-benchmark Composition -->
+        <div class="slider-item">
+          <div class="table-container">
+            <table class="data-table benchmark-table">
+              <thead>
+                <tr><th>Task Type</th><th>Domain</th><th>Source Benchmarks</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td rowspan="2">Perception / Understanding</td><td>General</td><td>COCO2017-val</td><td>Recognition and understanding of objects, attributes, and overall scene content in natural images.</td></tr>
+                <tr><td>Spatial / Layout</td><td>SUN397, Places365, GeoQA+, Geometry3K, UniGeo</td><td>Understanding of spatial relations, geometric structures, and layout arrangements in visual scenes.</td></tr>
+                <tr><td rowspan="4">Information Extraction</td><td>Text</td><td>TextVQA, DocVQA, CoSyn</td><td>Reading and interpretation of textual information embedded in images and documents.</td></tr>
+                <tr><td>Chart / Plot</td><td>ChartQAPro, ChartBench, AI2D, TQA, InfographicVQA, CoSyn</td><td>Interpretation of structured visualizations such as charts, plots, diagrams, and infographics.</td></tr>
+                <tr><td>Table</td><td>MMTab, TabRecSet, DocVQA, CoSyn</td><td>Parsing, retrieval, and reasoning over tabular and hierarchically structured visual information.</td></tr>
+                <tr><td>Web / App / UI</td><td>ScreenSpot, Rico</td><td>Understanding of user interfaces, interface elements, and their functional roles in digital environments.</td></tr>
+                <tr><td rowspan="2">Knowledge</td><td>Factual / Commonsense</td><td>A-OKVQA, VCR</td><td>Factual knowledge and commonsense reasoning beyond directly observable visual evidence.</td></tr>
+                <tr><td>Domain-Specific</td><td>ScienceQA, VQA-RAD, ArtBench</td><td>Specialized knowledge in domains such as science, medicine, and fine arts.</td></tr>
+                <tr><td rowspan="4">Reasoning</td><td>Causal / Logical</td><td>COCO2017-val</td><td>Causal relations, logical consistency, and coherent reasoning grounded in visual context.</td></tr>
+                <tr><td>Math</td><td>MathVision, MathVista, CoSyn</td><td>Mathematical problems, calculations, and visual elements such as diagrams, symbols, or formulas.</td></tr>
+                <tr><td>Code / Symbolic</td><td>MMCode, Plot2Code, MMEval</td><td>Transformations between visual inputs and code or symbolic representations.</td></tr>
+                <tr><td>Exam</td><td>MMMU-Pro</td><td>Images containing exam-style queries or problem statements.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="slide-caption">
+            <strong>Composition of the MM-JudgeBias dataset.</strong> Summary of four functional task types and twelve semantic domains curated from 29 source benchmarks.
+          </p>
+        </div>
+
+        <!-- Slide 3 : Bias Type x Difficulty -->
+        <div class="slider-item">
+          <div class="slide-grid slide-grid-wide-right">
+            <div class="slide-half">
+              <div class="table-container">
+                <table class="data-table compact">
+                  <thead>
+                    <tr><th>Bias Type</th><th>Easy</th><th>Moderate</th><th>Hard</th><th>Total</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Text-Dominance</td><td>28</td><td>79</td><td>98</td><td>205</td></tr>
+                    <tr><td>Image-Dominance</td><td>25</td><td>74</td><td>105</td><td>204</td></tr>
+                    <tr><td>Response-Dominance</td><td>23</td><td>68</td><td>113</td><td>204</td></tr>
+                    <tr><td>Instruction-Misalignment</td><td>27</td><td>71</td><td>106</td><td>204</td></tr>
+                    <tr><td>Image-Misalignment</td><td>27</td><td>71</td><td>104</td><td>202</td></tr>
+                    <tr><td>Detail-Description</td><td>21</td><td>76</td><td>103</td><td>200</td></tr>
+                    <tr><td>Unnecessary-Image</td><td>22</td><td>80</td><td>95</td><td>197</td></tr>
+                    <tr><td>Visual-Transformation</td><td>29</td><td>70</td><td>96</td><td>195</td></tr>
+                    <tr><td>Texture-Insertion</td><td>34</td><td>57</td><td>102</td><td>193</td></tr>
+                    <tr class="total"><td>Total</td><td>236</td><td>646</td><td>922</td><td>1,804</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="slide-half">
+              <div id="difficulty-chart" class="chart-box large"></div>
+            </div>
+          </div>
+          <p class="slide-caption">
+            <strong>Dataset statistics by bias type and difficulty.</strong> Distribution of the 1,804 samples across nine bias-induction strategies and three cognitive difficulty levels (Easy, Moderate, Hard).
+          </p>
+        </div>
+      </div>
+
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LEADERBOARD ============================== -->
+<section class="section section-alt">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 section-title">Leaderboard</h2>
+
+    <p class="section-subtitle">
+      <strong>Main experimental results on MM-JudgeBias.</strong>
+      The "Avg." column averages across all nine bias types. "Think" indicates models running with internal reasoning; "(high)" denotes high reasoning-effort. Three runs are averaged; we also report inter-run and inter-sample variance. <strong>Bold</strong> values mark the best per column.
+    </p>
+
+    <div class="table-container leaderboard-wrap">
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Category</th>
+            <th rowspan="2">Model</th>
+            <th rowspan="2">Think</th>
+            <th colspan="3">Integrality (BD&nbsp;&uarr;)</th>
+            <th colspan="2">Congruity (BD&nbsp;&uarr;)</th>
+            <th colspan="4">Robustness (BC&nbsp;&uarr;)</th>
+            <th rowspan="2">Avg.</th>
+            <th rowspan="2">Var.<br>(Inter-run)</th>
+            <th rowspan="2">Var.<br>(Inter-sample)</th>
+          </tr>
+          <tr>
+            <th>TextDom</th>
+            <th>ImgDom</th>
+            <th>RespDom</th>
+            <th>InstrMis</th>
+            <th>ImgMis</th>
+            <th>DetailDesc</th>
+            <th>UnnecImg</th>
+            <th>VisualTrans</th>
+            <th>TextInsert</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="17" class="cat-cell">Closed-source</td><td>Gemini-3-Pro (high)</td><td>&#10003;</td><td><b>0.912</b></td><td>0.278</td><td><b>0.988</b></td><td>0.982</td><td>0.955</td><td><b>0.936</b></td><td>0.947</td><td>0.889</td><td>0.933</td><td><b>0.869</b></td><td>0.6</td><td>9.3</td></tr>
+          <tr><td>Gemini-2.5-Pro</td><td>&#10003;</td><td>0.751</td><td>0.535</td><td>0.978</td><td><b>1.000</b></td><td>0.904</td><td>0.935</td><td>0.924</td><td>0.861</td><td>0.930</td><td><b>0.869</b></td><td>0.5</td><td>8.7</td></tr>
+          <tr><td>Gemini-2.5-Flash</td><td>&#10003;</td><td>0.423</td><td>0.292</td><td>0.743</td><td>0.997</td><td>0.760</td><td>0.905</td><td>0.944</td><td>0.864</td><td>0.918</td><td>0.761</td><td>0.6</td><td>7.0</td></tr>
+          <tr><td>Gemini-2.5-Flash-Lite (think)</td><td>&#10003;</td><td>0.391</td><td>0.335</td><td>0.890</td><td>0.993</td><td>0.634</td><td>0.866</td><td>0.940</td><td>0.801</td><td>0.875</td><td>0.747</td><td>1.1</td><td>7.9</td></tr>
+          <tr><td>Gemini-2.5-Flash-Lite</td><td></td><td>0.113</td><td>0.367</td><td>0.544</td><td>0.978</td><td>0.585</td><td>0.845</td><td>0.937</td><td>0.787</td><td>0.873</td><td>0.670</td><td>1.3</td><td>6.5</td></tr>
+          <tr><td>Gemini-2.0-Flash-Lite</td><td></td><td>0.162</td><td>0.358</td><td>0.570</td><td>0.924</td><td>0.217</td><td>0.897</td><td>0.958</td><td>0.862</td><td>0.878</td><td>0.647</td><td>0.5</td><td>4.5</td></tr>
+          <tr><td>o3 (high)</td><td>&#10003;</td><td>0.276</td><td>0.354</td><td>0.596</td><td>0.986</td><td>0.337</td><td>0.879</td><td>0.937</td><td>0.822</td><td>0.884</td><td>0.675</td><td>0.7</td><td>6.3</td></tr>
+          <tr><td>o4-mini (high)</td><td>&#10003;</td><td>0.141</td><td>0.446</td><td>0.518</td><td>0.997</td><td>0.184</td><td>0.886</td><td>0.950</td><td>0.854</td><td>0.909</td><td>0.654</td><td>0.9</td><td>8.5</td></tr>
+          <tr><td>GPT-5.1 (high)</td><td>&#10003;</td><td>0.192</td><td>0.211</td><td>0.200</td><td><b>1.000</b></td><td>0.296</td><td>0.911</td><td>0.961</td><td>0.867</td><td>0.908</td><td>0.616</td><td>0.6</td><td>7.3</td></tr>
+          <tr><td>GPT-5 mini (high)</td><td>&#10003;</td><td>0.112</td><td>0.236</td><td>0.337</td><td>0.991</td><td>0.185</td><td>0.898</td><td>0.954</td><td>0.877</td><td>0.927</td><td>0.613</td><td>0.4</td><td>5.8</td></tr>
+          <tr><td>GPT-4.1 mini</td><td></td><td>0.049</td><td>0.148</td><td>0.138</td><td>0.992</td><td>0.160</td><td>0.882</td><td>0.972</td><td>0.887</td><td>0.904</td><td>0.570</td><td>0.5</td><td>4.0</td></tr>
+          <tr><td>Claude-Opus-4.5 (think)</td><td>&#10003;</td><td>0.680</td><td><b>0.589</b></td><td>0.917</td><td>0.987</td><td>0.959</td><td>0.917</td><td>0.925</td><td>0.842</td><td>0.903</td><td>0.858</td><td>0.2</td><td>5.3</td></tr>
+          <tr><td>Claude-Sonnet-4.5 (think)</td><td>&#10003;</td><td>0.556</td><td>0.540</td><td>0.831</td><td>0.987</td><td>0.905</td><td>0.884</td><td>0.921</td><td>0.825</td><td>0.893</td><td>0.816</td><td>0.5</td><td>5.6</td></tr>
+          <tr><td>Claude-Haiku-4.5 (think)</td><td>&#10003;</td><td>0.291</td><td>0.530</td><td>0.735</td><td>0.981</td><td>0.809</td><td>0.870</td><td>0.943</td><td>0.785</td><td>0.869</td><td>0.757</td><td>0.6</td><td>5.7</td></tr>
+          <tr><td>Claude-Opus-4.5</td><td></td><td>0.539</td><td>0.571</td><td>0.838</td><td>0.990</td><td><b>0.973</b></td><td>0.902</td><td>0.814</td><td>0.820</td><td>0.891</td><td>0.815</td><td>0.2</td><td>5.5</td></tr>
+          <tr><td>Claude-Sonnet-4.5</td><td></td><td>0.445</td><td>0.385</td><td>0.716</td><td>0.982</td><td>0.862</td><td>0.837</td><td>0.834</td><td>0.798</td><td>0.866</td><td>0.747</td><td>0.5</td><td>6.3</td></tr>
+          <tr><td>Claude-Haiku-4.5</td><td></td><td>0.278</td><td>0.370</td><td>0.603</td><td>0.981</td><td>0.818</td><td>0.827</td><td>0.888</td><td>0.747</td><td>0.844</td><td>0.706</td><td>0.7</td><td>6.3</td></tr>
+
+          <tr><td rowspan="9" class="cat-cell">Open-source</td><td>Qwen3-VL-30B-A3B-Thinking</td><td>&#10003;</td><td>0.293</td><td>0.343</td><td>0.806</td><td>0.983</td><td>0.476</td><td>0.886</td><td>0.905</td><td>0.850</td><td>0.874</td><td>0.713</td><td>0.9</td><td>6.7</td></tr>
+          <tr><td>Qwen3-VL-8B-Thinking</td><td>&#10003;</td><td>0.177</td><td>0.210</td><td>0.412</td><td>0.991</td><td>0.529</td><td>0.883</td><td>0.927</td><td>0.865</td><td>0.898</td><td>0.655</td><td>0.9</td><td>6.2</td></tr>
+          <tr><td>Qwen3-VL-30B-A3B-Instruct</td><td></td><td>0.237</td><td>0.174</td><td>0.642</td><td>0.988</td><td>0.648</td><td>0.840</td><td>0.837</td><td>0.854</td><td>0.883</td><td>0.678</td><td>0.6</td><td>4.6</td></tr>
+          <tr><td>Qwen3-VL-8B-Instruct</td><td></td><td>0.336</td><td>0.266</td><td>0.913</td><td><b>1.000</b></td><td>0.622</td><td>0.803</td><td>0.952</td><td>0.870</td><td>0.880</td><td>0.738</td><td>0.8</td><td>7.3</td></tr>
+          <tr><td>Qwen2.5-VL-72B-Instruct</td><td></td><td>0.082</td><td>0.158</td><td>0.223</td><td>0.989</td><td>0.208</td><td>0.822</td><td>0.903</td><td>0.855</td><td>0.853</td><td>0.566</td><td>0.6</td><td>2.3</td></tr>
+          <tr><td>Qwen2.5-VL-7B-Instruct</td><td></td><td>0.141</td><td>0.188</td><td>0.194</td><td>0.991</td><td>0.277</td><td>0.735</td><td>0.815</td><td>0.739</td><td>0.767</td><td>0.539</td><td>1.7</td><td>4.6</td></tr>
+          <tr><td>InternVL3.5-30B-A3B</td><td></td><td>0.073</td><td>0.225</td><td>0.179</td><td>0.964</td><td>0.377</td><td>0.800</td><td>0.837</td><td>0.801</td><td>0.804</td><td>0.562</td><td>1.4</td><td>4.1</td></tr>
+          <tr><td>InternVL3.5-14B</td><td></td><td>0.137</td><td>0.243</td><td>0.273</td><td>0.982</td><td>0.464</td><td>0.803</td><td>0.850</td><td>0.797</td><td>0.814</td><td>0.596</td><td>1.0</td><td>3.7</td></tr>
+          <tr><td>InternVL3.5-8B</td><td></td><td>0.099</td><td>0.178</td><td>0.215</td><td>0.926</td><td>0.289</td><td>0.798</td><td>0.886</td><td>0.791</td><td>0.814</td><td>0.555</td><td>1.0</td><td>3.5</td></tr>
+
+          <tr><td rowspan="4" class="cat-cell">Critic</td><td>Prometheus-Vision-13B</td><td></td><td>0.163</td><td>0.340</td><td>0.362</td><td>0.890</td><td>0.166</td><td>0.738</td><td>0.781</td><td>0.804</td><td>0.818</td><td>0.563</td><td>2.4</td><td>10.3</td></tr>
+          <tr><td>Prometheus-Vision-7B</td><td></td><td>0.167</td><td>0.242</td><td>0.246</td><td>0.869</td><td>0.165</td><td>0.750</td><td>0.793</td><td>0.821</td><td>0.806</td><td>0.540</td><td>2.4</td><td>10.6</td></tr>
+          <tr><td>LLaVA-Critic-72B</td><td></td><td>0.147</td><td>0.121</td><td>0.373</td><td>0.989</td><td>0.250</td><td>0.926</td><td><b>0.974</b></td><td><b>0.931</b></td><td><b>0.942</b></td><td>0.628</td><td>0.0</td><td>2.6</td></tr>
+          <tr><td>LLaVA-Critic-7B</td><td></td><td>0.238</td><td>0.266</td><td>0.420</td><td>0.958</td><td>0.452</td><td>0.824</td><td>0.929</td><td>0.869</td><td>0.864</td><td>0.647</td><td>0.0</td><td>6.1</td></tr>
+
+          <tr class="avg-row"><td colspan="3">Average</td><td>0.287</td><td>0.317</td><td>0.547</td><td>0.976</td><td>0.516</td><td>0.856</td><td>0.905</td><td>0.835</td><td>0.874</td><td>0.679</td><td>0.8</td><td>6.1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Per-bias bar plot carousel -->
+    <h3 class="title is-4 subsection-title" style="margin-top:48px;">Per-Bias Performance</h3>
+    <p class="section-subtitle">
+      Each panel shows the score of every evaluated judge on a single bias type. Use the arrows to step through all nine bias types.
+    </p>
+
+    <div class="slider-shell" id="bias-bar-slider">
+      <button class="slider-arrow slider-prev" aria-label="Previous">&#10094;</button>
+      <button class="slider-arrow slider-next" aria-label="Next">&#10095;</button>
+
+      <div class="slider-track">
+        <div class="slider-item is-active"><h4 class="bias-panel-title">Text-Dominance</h4><div id="bar-textdom" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Image-Dominance</h4><div id="bar-imgdom" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Response-Dominance</h4><div id="bar-respdom" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Instruction-Misalignment</h4><div id="bar-instrmis" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Image-Misalignment</h4><div id="bar-imgmis" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Detail-Description</h4><div id="bar-detail" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Unnecessary-Image</h4><div id="bar-unnec" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Visual-Transformation</h4><div id="bar-visualtrans" class="chart-box tall"></div></div>
+        <div class="slider-item"><h4 class="bias-panel-title">Texture-Insertion</h4><div id="bar-textinsert" class="chart-box tall"></div></div>
+      </div>
+
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EXAMPLES ============================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Examples</h2>
+    <p class="section-subtitle">
+      For each of the nine bias types, we show an unbiased instance and its perturbed counterpart. The shared response is rated by judges in both contexts.
+    </p>
+
+    <div class="slider-shell example-slider" id="examples-slider">
+      <button class="slider-arrow slider-prev" aria-label="Previous">&#10094;</button>
+      <button class="slider-arrow slider-next" aria-label="Next">&#10095;</button>
+
+      <div class="slider-track" id="examples-track"></div>
+
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== JUDGE EXAMPLES ============================== -->
+<section class="section section-alt">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Judge Examples</h2>
+    <p class="section-subtitle">
+      Qualitative examples showing how a single judge model assigns scores under unbiased and biased conditions, illustrating each compositional-bias dimension.
+    </p>
+
+    <div class="slider-shell example-slider" id="judge-slider">
+      <button class="slider-arrow slider-prev" aria-label="Previous">&#10094;</button>
+      <button class="slider-arrow slider-next" aria-label="Next">&#10095;</button>
+
+      <div class="slider-track" id="judge-track"></div>
+
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BIBTEX ============================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 section-title">BibTeX</h2>
+    <pre><code>@inproceedings{lee2026mmjudgebias,
+  title         = {MM-JudgeBias: A Benchmark for Evaluating Compositional Biases in MLLM-as-a-Judge},
+  author        = {Lee, Sua and Park, Sanghee and Im, Jinbae},
+  booktitle     = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026, Main Conference)},
+  year          = {2026},
+  eprint        = {2604.18164},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  url           = {https://arxiv.org/abs/2604.18164}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
   <div class="container">
-    <p>This website is borrowed from the source code of <a href="https://nerfies.github.io/" style="color:#aaa; text-decoration:underline;">Nerfies</a>.</p>
+    <div class="content has-text-centered">
+      <p>
+        This website is website adapted from
+        <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>,
+        licensed under a
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+    </div>
   </div>
 </footer>
 
+<!-- ============================== IMAGE LIGHTBOX ============================== -->
+<div id="image-lightbox" class="image-lightbox" role="dialog" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img class="lightbox-img" src="" alt="Zoomed image">
+</div>
+
+<script src="static/js/page.js?v=3"></script>
 </body>
 </html>
